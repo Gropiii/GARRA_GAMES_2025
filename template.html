@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
     <style>
         /* Estilos gerais */
         body { 
@@ -16,30 +17,74 @@
             color: #333;
         }
         
-        /* Container principal com o fundo AZUL ESCURO */
         .container {
             max-width: 100%;
             margin: 20px auto;
             padding: 20px;
             background-color: #001f4a; /* AZUL ESCURO */
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            /* MODIFICADO: Rolagem horizontal restaurada */
             overflow-x: auto; 
         }
 
-        /* Estilos de Logo, Título e Menu */
+        /* Estilos de Logo e Título */
         .logo-container { display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
         .logo-item { max-height: 250px; max-width: 90%; width: auto; height: auto; }
         h1 { text-align: center; color: #fd25db; /* ROSA */ }
-        .menu { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #444; padding-bottom: 15px; }
-        .menu button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: transparent; border: 2px solid #00c0ff; color: #00c0ff; border-radius: 5px; margin: 0 5px; transition: all 0.2s ease-in-out; font-weight: bold; }
-        .menu button:hover { background-color: #00c0ff; color: #000c2f; }
-        .menu button.active { background-color: #fd25db; color: #000c2f; border-color: #fd25db; }
+
+        /* --- ### INÍCIO DA ALTERAÇÃO (CSS DO MENU) ### --- */
+
+        /* Menu de categorias (agora centraliza o dropdown) */
+        .menu { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            border-bottom: 2px solid #444; 
+            padding-bottom: 15px; 
+        }
+
+        /* NOVO: Rótulo (label) para o dropdown */
+        .menu-label {
+            color: #e3f47f; /* VERDE LIMÃO */
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-right: 10px;
+        }
+
+        /* NOVO: Estilo "Neon" para o dropdown <select> */
+        #category-select {
+            background-color: #000c2f; /* Fundo AZUL ESCURO */
+            color: #e3f47f; /* Texto VERDE LIMÃO */
+            border: 2px solid #00c0ff; /* Borda AZUL CLARO */
+            padding: 10px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            
+            /* Remove a seta padrão do navegador */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            
+            /* Adiciona uma seta customizada (SVG embutido) na cor AZUL CLARO */
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%2300c0ff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 40px; /* Espaço para a seta customizada */
+        }
+
+        /* Estilo para as opções (options) dentro do dropdown */
+        #category-select option {
+            background-color: #001f4a;
+            color: #e3f47f;
+            font-weight: bold;
+        }
+
+        /* Removemos os estilos .menu button, .menu button:hover, .menu button.active */
+
+        /* --- ### FIM DA ALTERAÇÃO (CSS DO MENU) ### --- */
 
         /* --- ESTILOS DA TABELA --- */
-
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        /* 'white-space: nowrap' garante que a tabela role corretamente sem quebrar linhas */
         th, td { padding: 10px 12px; border: 1px solid #333; text-align: center; white-space: nowrap; } 
         table.dataTable th, table.dataTable td { text-align: center !important; }
         
@@ -61,7 +106,6 @@
             font-size: 0.9em; 
         }
         
-        /* Efeito "zebra" (as regras extras para colunas congeladas foram removidas) */
         table.dataTable tbody tr.odd { 
             background-color: #000c2f !important; /* AZUL ESCURO (Base) */
             color: #e3f47f !important; /* VERDE LIMÃO */
@@ -82,10 +126,20 @@
         .footer-container { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 10px; border-top: 1px solid #444; font-size: 0.8em; color: #999; }
         .signature { font-style: italic; }
 
-        /* --- OTIMIZAÇÃO PARA CELULARES REMOVIDA --- */
-        /* O bloco @media foi removido para garantir que o layout de desktop */
-        /* seja usado em todas as telas, funcionando com a rolagem horizontal. */
-
+        /* Otimização para celulares (mantida) */
+        @media only screen and (max-width: 768px) {
+            body { font-size: 14px; }
+            .container { padding: 10px; margin: 10px auto; }
+            .logo-container { flex-direction: column; justify-content: center; gap: 15px; }
+            .logo-item { max-height: 100px; }
+            h1 { font-size: 1.8em; }
+            /* Ajusta o menu no mobile */
+            .menu { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+            .menu-label { margin-right: 0; }
+            
+            th, td { padding: 6px 5px; font-size: 0.85em; }
+            .footer-container { flex-direction: column; gap: 5px; }
+        }
     </style>
 </head>
 <body>
@@ -99,11 +153,16 @@
         <h1>Classificação - GARRA GAMES 2025</h1>
         
         <div class="menu">
-            {% for category_name in categories_data %}
-                <button id="btn-{{ category_name|replace(' ', '')|lower }}" onclick="showCategory('{{ category_name|replace(' ', '')|lower }}')">{{ category_name }}</button>
-            {% endfor %} 
+            <label for="category-select" class="menu-label">Selecione a Categoria:</label>
+            
+            <select id="category-select" onchange="showCategory(this.value)">
+                
+                {% for category_name in categories_data %}
+                    <option value="{{ category_name|replace(' ', '')|lower }}">{{ category_name }}</option>
+                {% endfor %} 
+            
+            </select>
         </div>
-
         {% for category_name, atletas in categories_data.items() %}
             <div id="table-container-{{ category_name|replace(' ', '')|lower }}" class="category-table">
                 <h2 style="color: #e3f47f;">Categoria: {{ category_name }}</h2>
@@ -170,40 +229,46 @@
     </div>
 
     <script>
-        // Função para mostrar a categoria selecionada e inicializar a DataTables
+        // --- ### INÍCIO DA ALTERAÇÃO (JAVASCRIPT) ### ---
+        
+        // A função 'showCategory' foi simplificada.
+        // Ela não precisa mais se preocupar em adicionar/remover classes 'active' dos botões.
         function showCategory(categoryName) {
+            // Esconde todas as divs de tabela
             document.querySelectorAll('.category-table').forEach(tableDiv => { tableDiv.style.display = 'none'; });
-            document.querySelectorAll('.menu button').forEach(button => { button.classList.remove('active'); });
             
+            // Mostra a div de tabela correspondente ao 'categoryName'
             const activeTableContainer = document.querySelector('#table-container-' + categoryName);
             activeTableContainer.style.display = 'block';
             
-            document.querySelector('#btn-' + categoryName).classList.add('active');
-
+            // A lógica de inicialização da DataTables permanece a mesma
             const tableId = '#leaderboard-' + categoryName;
             
             if (!$.fn.dataTable.isDataTable(tableId)) {
-                
-                // --- ### INÍCIO DA MUDANÇA (JAVASCRIPT) ### ---
-                // Inicialização SIMPLES da DataTables, sem FixedColumns.
                 $(tableId).DataTable({
                     "paging": false,
                     "searching": false,
                     "info": false,
                     "order": [[ 0, 'asc' ]]
                 });
-                // --- ### FIM DA MUDANÇA (JAVASCRIPT) ### ---
             }
         }
 
         // Roda automaticamente assim que a página termina de carregar
         document.addEventListener('DOMContentLoaded', function() {
-            // Clica no primeiro botão de categoria
-            const firstButton = document.querySelector('.menu button');
-            if (firstButton) { 
-                firstButton.click(); 
+            // Pega o elemento <select>
+            const categorySelect = document.querySelector('#category-select');
+            
+            // Verifica se o dropdown existe e tem opções
+            if (categorySelect && categorySelect.options.length > 0) {
+                // Pega o valor da *primeira* opção
+                const firstCategoryValue = categorySelect.options[0].value;
+                // Chama a função showCategory com esse valor para exibir a primeira tabela
+                showCategory(firstCategoryValue);
             }
         });
+        
+        // --- ### FIM DA ALTERAÇÃO (JAVASCRIPT) ### ---
     </script>
 </body>
 </html>
