@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard - GARRA GAMES 2025</title>
+    
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-
     <style>
-        /* Estilos gerais para o corpo da página */
+        /* Estilos gerais */
         body { 
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             background-color: #f4f4f4;
@@ -21,88 +21,29 @@
             max-width: 100%;
             margin: 20px auto;
             padding: 20px;
-            background-color: #001f4a; /* AZUL ESCURO (do seu código) */
+            background-color: #001f4a; /* AZUL ESCURO */
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            /* MODIFICADO: Rolagem horizontal restaurada para funcionar no celular */
             overflow-x: auto; 
         }
 
-        /* Container para o(s) logo(s) */
-        .logo-container {
-            display: flex;
-            justify-content: center; 
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        /* Estilo para cada logo individual */
-        .logo-item {
-            max-height: 250px; 
-            max-width: 90%;
-            width: auto;
-            height: auto;
-        }
-        
-        /* Título principal em ROSA */
-        h1 {
-            text-align: center;
-            color: #fd25db; /* ROSA */
-        }
-
-        /* --- ### INÍCIO DA MUDANÇA (BOTÕES DO MENU) ### --- */
-
-        /* Menu de categorias */
-        .menu { 
-            text-align: center; 
-            margin-bottom: 25px; 
-            /* MODIFICADO: Borda inferior mais escura para combinar com o tema */
-            border-bottom: 2px solid #444; 
-            padding-bottom: 15px; 
-        }
-
-        /* Estilo para cada botão individual do menu (Estilo "Ghost Button") */
-        .menu button { 
-            padding: 10px 20px; 
-            font-size: 16px; 
-            cursor: pointer; 
-            /* MODIFICADO: Fundo transparente */
-            background-color: transparent; 
-            /* MODIFICADO: Contorno (borda) na cor AZUL CLARO */
-            border: 2px solid #00c0ff;
-            /* MODIFICADO: Texto na cor AZUL CLARO */
-            color: #00c0ff;
-            border-radius: 5px; /* Adiciona bordas arredondadas */
-            margin: 0 5px; 
-            transition: all 0.2s ease-in-out; 
-            font-weight: bold; /* Deixa o texto do botão mais forte */
-        }
-
-        /* Estilo do botão quando o mouse passa por cima dele */
-        .menu button:hover { 
-            /* MODIFICADO: Preenche o fundo com AZUL CLARO */
-            background-color: #00c0ff;
-            /* MODIFICADO: Texto fica AZUL ESCURO para contraste */
-            color: #000c2f;
-        }
-        
-        /* Botão ativo do menu em ROSA */
-        .menu button.active { 
-            /* MODIFICADO: Preenche o fundo com ROSA */
-            background-color: #fd25db;
-            /* MODIFICADO: Texto fica AZUL ESCURO para contraste */
-            color: #000c2f;
-            /* MODIFICADO: Borda também fica ROSA */
-            border-color: #fd25db; 
-        }
-
-        /* --- ### FIM DA MUDANÇA (BOTÕES DO MENU) ### --- */
+        /* Estilos de Logo, Título e Menu */
+        .logo-container { display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
+        .logo-item { max-height: 250px; max-width: 90%; width: auto; height: auto; }
+        h1 { text-align: center; color: #fd25db; /* ROSA */ }
+        .menu { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #444; padding-bottom: 15px; }
+        .menu button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: transparent; border: 2px solid #00c0ff; color: #00c0ff; border-radius: 5px; margin: 0 5px; transition: all 0.2s ease-in-out; font-weight: bold; }
+        .menu button:hover { background-color: #00c0ff; color: #000c2f; }
+        .menu button.active { background-color: #fd25db; color: #000c2f; border-color: #fd25db; }
 
         /* --- ESTILOS DA TABELA --- */
 
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 10px 12px; border: 1px solid #333; text-align: center; white-space: nowrap; }
+        /* 'white-space: nowrap' garante que a tabela role corretamente sem quebrar linhas */
+        th, td { padding: 10px 12px; border: 1px solid #333; text-align: center; white-space: nowrap; } 
         table.dataTable th, table.dataTable td { text-align: center !important; }
         
-        /* Cabeçalho principal da tabela (usando o rosa/roxo que você tinha) */
+        /* Cabeçalho principal da tabela */
         thead th { 
             background-color: #992389;
             color: #000c2f;
@@ -115,14 +56,13 @@
         }
         
         .wod-header { font-size: 1.1em; }
-        /* Sub-cabeçalho em ROSA */
         .sub-header { 
             background-color: #fd25db !important; /* ROSA */
             color: #000c2f !important;
             font-size: 0.9em; 
         }
         
-        /* Efeito "zebra" para as linhas */
+        /* Efeito "zebra" (não precisamos mais das regras extras para colunas congeladas) */
         table.dataTable tbody tr.odd { 
             background-color: #000c2f !important; /* AZUL ESCURO (Base) */
             color: #e3f47f !important; /* VERDE LIMÃO */
@@ -132,7 +72,6 @@
             color: #e3f47f !important; /* VERDE LIMÃO */
         }
 
-        /* Destaque para Rank, Pontos e Total de Pontos */
         .rank, .total-points, .points { 
             font-weight: bold; 
             color: #ffffff;
@@ -144,18 +83,10 @@
         .footer-container { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 10px; border-top: 1px solid #444; font-size: 0.8em; color: #999; }
         .signature { font-style: italic; }
 
-        /* --- OTIMIZAÇÃO PARA CELULARES (DESIGN RESPONSIVO) --- */
-        
-        @media only screen and (max-width: 768px) {
-            body { font-size: 14px; }
-            .container { padding: 10px; margin: 10px auto; }
-            .logo-container { flex-direction: column; justify-content: center; gap: 15px; }
-            .logo-item { max-height: 100px; }
-            h1 { font-size: 1.8em; }
-            .menu button { padding: 8px 10px; font-size: 14px; margin: 0 2px; }
-            th, td { padding: 6px 5px; font-size: 0.85em; }
-            .footer-container { flex-direction: column; gap: 5px; }
-        }
+        /* --- OTIMIZAÇÃO PARA CELULARES REMOVIDA --- */
+        /* O bloco @media foi removido para garantir que o layout de desktop */
+        /* seja usado em todas as telas, funcionando com a rolagem horizontal. */
+
     </style>
 </head>
 <body>
@@ -253,12 +184,16 @@
             const tableId = '#leaderboard-' + categoryName;
             
             if (!$.fn.dataTable.isDataTable(tableId)) {
+                
+                // --- ### INÍCIO DA MUDANÇA (JAVASCRIPT) ### ---
+                // Inicialização SIMPLES da DataTables, sem FixedColumns.
                 $(tableId).DataTable({
                     "paging": false,
                     "searching": false,
                     "info": false,
                     "order": [[ 0, 'asc' ]]
                 });
+                // --- ### FIM DA MUDANÇA (JAVASCRIPT) ### ---
             }
         }
 
