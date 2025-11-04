@@ -1,10 +1,11 @@
-name: Atualizar Leaderboard Automaticamente
+# Nome do seu workflow (aparece na aba Actions)
+name: Atualizar Leaderboard
 
 on:
   # Permite que você rode esta ação manualmente pela aba "Actions" do GitHub
   workflow_dispatch:
 
-# ADICIONE ESTA SEÇÃO AQUI
+# Concede permissão para o robô escrever no seu repositório
 permissions:
   contents: write
 
@@ -12,25 +13,30 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1. Baixa o código do seu repositório
       - name: 1. Checkout do Repositório
         uses: actions/checkout@v3
 
+      # 2. Configura o ambiente Python
       - name: 2. Configurar Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
+      # 3. Instala as bibliotecas necessárias para o main.py
       - name: 3. Instalar Dependências
-        run: pip install pandas jinja2 pytz
+        run: pip install pandas jinja2 pytz numpy
 
+      # 4. Executa o script Python
       - name: 4. Executar o Script para Gerar o HTML
         run: python main.py
 
+      # 5. Salva o novo index.html de volta no repositório
       - name: 5. Fazer Commit e Push do Novo index.html
         run: |
           git config --global user.name 'GitHub Actions Bot'
           git config --global user.email 'actions@github.com'
           git add index.html
           # Faz o commit apenas se houver mudanças no index.html
-          git diff-index --quiet HEAD || git commit -m "Leaderboard atualizado automaticamente"
+          git diff-index --quiet HEAD || git commit -m "Leaderboard atualizado"
           git push
