@@ -21,7 +21,7 @@
             max-width: 100%;
             margin: 20px auto;
             padding: 20px;
-            background-color: #001f4a; /* AZUL ESCURO */
+            background-color: #001f4a; /* AZUL ESCURO (do seu código) */
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             overflow-x: auto; 
         }
@@ -48,72 +48,100 @@
             color: #fd25db; /* ROSA */
         }
 
+        /* --- ### INÍCIO DA MUDANÇA (BOTÕES DO MENU) ### --- */
+
         /* Menu de categorias */
-        .menu { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
-        .menu button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #f0f0f0; border: none; border-bottom: 3px solid transparent; margin: 0 5px; transition: all 0.2s ease-in-out; }
-        .menu button:hover { background-color: #ffffff; }
-        /* Botão ativo do menu em AZUL CLARO */
-        .menu button.active { 
-            color: #992389; /* AZUL CLARO */
-            border-bottom: 3px solid #992389; /* AZUL CLARO */
-            background-color: #fff; 
+        .menu { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            /* MODIFICADO: Borda inferior mais escura para combinar com o tema */
+            border-bottom: 2px solid #444; 
+            padding-bottom: 15px; 
         }
+
+        /* Estilo para cada botão individual do menu (Estilo "Ghost Button") */
+        .menu button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            /* MODIFICADO: Fundo transparente */
+            background-color: transparent; 
+            /* MODIFICADO: Contorno (borda) na cor AZUL CLARO */
+            border: 2px solid #00c0ff;
+            /* MODIFICADO: Texto na cor AZUL CLARO */
+            color: #00c0ff;
+            border-radius: 5px; /* Adiciona bordas arredondadas */
+            margin: 0 5px; 
+            transition: all 0.2s ease-in-out; 
+            font-weight: bold; /* Deixa o texto do botão mais forte */
+        }
+
+        /* Estilo do botão quando o mouse passa por cima dele */
+        .menu button:hover { 
+            /* MODIFICADO: Preenche o fundo com AZUL CLARO */
+            background-color: #00c0ff;
+            /* MODIFICADO: Texto fica AZUL ESCURO para contraste */
+            color: #000c2f;
+        }
+        
+        /* Botão ativo do menu em ROSA */
+        .menu button.active { 
+            /* MODIFICADO: Preenche o fundo com ROSA */
+            background-color: #fd25db;
+            /* MODIFICADO: Texto fica AZUL ESCURO para contraste */
+            color: #000c2f;
+            /* MODIFICADO: Borda também fica ROSA */
+            border-color: #fd25db; 
+        }
+
+        /* --- ### FIM DA MUDANÇA (BOTÕES DO MENU) ### --- */
 
         /* --- ESTILOS DA TABELA --- */
 
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        /* Bordas da tabela mais claras para contrastar com o fundo escuro */
         th, td { padding: 10px 12px; border: 1px solid #333; text-align: center; white-space: nowrap; }
         table.dataTable th, table.dataTable td { text-align: center !important; }
         
-        /* Cabeçalho principal da tabela em AZUL CLARO */
+        /* Cabeçalho principal da tabela (usando o rosa/roxo que você tinha) */
         thead th { 
-            background-color: #992389; /* AZUL CLARO */
-            color: #000c2f; /* Texto em AZUL ESCURO para contraste */
+            background-color: #992389;
+            color: #000c2f;
         }
         
-        /* Setas de ordenação da DataTables */
         table.dataTable thead .sorting:after, 
         table.dataTable thead .sorting_asc:after, 
         table.dataTable thead .sorting_desc:after { 
-            color: #000c2f !important; /* Setas em AZUL ESCURO */
+            color: #000c2f !important;
         }
         
         .wod-header { font-size: 1.1em; }
         /* Sub-cabeçalho em ROSA */
         .sub-header { 
             background-color: #fd25db !important; /* ROSA */
-            color: #000c2f !important; /* Texto em AZUL ESCURO */
+            color: #000c2f !important;
             font-size: 0.9em; 
         }
         
-        /* Efeito "zebra" para as linhas (Azul escuro e um tom levemente mais claro) */
+        /* Efeito "zebra" para as linhas */
         table.dataTable tbody tr.odd { 
             background-color: #000c2f !important; /* AZUL ESCURO (Base) */
-            color: #e3f47f !important; /* Texto principal em VERDE LIMÃO */
+            color: #e3f47f !important; /* VERDE LIMÃO */
         }
         table.dataTable tbody tr.even { 
             background-color: #001f4a !important; /* Tom de azul um pouco mais claro */
-            color: #e3f47f !important; /* Texto principal em VERDE LIMÃO */
+            color: #e3f47f !important; /* VERDE LIMÃO */
         }
 
         /* Destaque para Rank, Pontos e Total de Pontos */
         .rank, .total-points, .points { 
             font-weight: bold; 
-            color: #ffffff; /* Texto de destaque em BRANCO */
+            color: #ffffff;
         }
 
-        /* Estilo para as medalhas */
         .medal { margin-left: 8px; font-size: 1.2em; }
-        
-        /* Célula do resultado (WOD) */
         .result { color: #e3f47f; font-size: 1em; } /* VERDE LIMÃO */
-        
-        /* Esconde as tabelas inativas */
         .category-table { display: none; }
-
-        /* Rodapé com data e assinatura */
-        .footer-container { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 10px; border-top: 1px solid #444; font-size: 0.8em; color: #999; } /* Cor cinza neutra */
+        .footer-container { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 10px; border-top: 1px solid #444; font-size: 0.8em; color: #999; }
         .signature { font-style: italic; }
 
         /* --- OTIMIZAÇÃO PARA CELULARES (DESIGN RESPONSIVO) --- */
@@ -205,84 +233,10 @@
                                 
                             </td>
                             
-                            <td>Luanda e Ari</td>
+                            <td>Bia e Tonia</td>
                             
                             
-                                <td class="points">3</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        08:55
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">3</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        33
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">3</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        189
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">2</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        58.0
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">2</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        06:05
-                                    
-                                    
-                                </td>
-                            
-                            <td class="total-points">13</td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="rank" data-sort="2">
-                                2
-                                
-                                    <span class="medal">🥈</span>
-                                
-                            </td>
-                            
-                            <td>Monique e Livia</td>
-                            
-                            
-                                <td class="points">1</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        03:44
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">6</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -292,91 +246,7 @@
                                     
                                 </td>
                             
-                                <td class="points">2</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        200
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">1</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        100.0
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">4</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        07:35
-                                    
-                                    
-                                </td>
-                            
-                            <td class="total-points">14</td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="rank" data-sort="3">
-                                3
-                                
-                                    <span class="medal">🥉</span>
-                                
-                            </td>
-                            
-                            <td>Pati e Dani</td>
-                            
-                            
-                                <td class="points">2</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        05:32
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">2</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        45
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">1</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        211
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">6</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        10.0
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">5</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -386,183 +256,115 @@
                                     
                                 </td>
                             
-                            <td class="total-points">16</td>
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                            <td class="total-points">0</td>
                         </tr>
                         
                         <tr>
-                            <td class="rank" data-sort="4">
-                                4
+                            <td class="rank" data-sort="1">
+                                1
+                                
+                                    <span class="medal">🥇</span>
                                 
                             </td>
                             
                             <td>Gabi e Fabrizia</td>
                             
                             
-                                <td class="points">6</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        12:01
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">1</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        49
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">5</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        188
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">4</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        34.0
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">1</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        04:56
+                                        --
                                     
                                     
                                 </td>
                             
-                            <td class="total-points">17</td>
+                            <td class="total-points">0</td>
                         </tr>
                         
                         <tr>
-                            <td class="rank" data-sort="5">
-                                5
+                            <td class="rank" data-sort="1">
+                                1
                                 
-                            </td>
-                            
-                            <td>Vivi e Ana</td>
-                            
-                            
-                                <td class="points">4</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        09:32
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">5</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        18
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">6</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        35
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">3</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        55.0
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">3</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        06:58
-                                    
-                                    
-                                </td>
-                            
-                            <td class="total-points">21</td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="rank" data-sort="6">
-                                6
+                                    <span class="medal">🥇</span>
                                 
                             </td>
                             
                             <td>Haiane e Rafa</td>
                             
                             
-                                <td class="points">5</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        10:57
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">4</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        28
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">3</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        189
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">5</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        20.0
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">5</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -572,81 +374,61 @@
                                     
                                 </td>
                             
-                            <td class="total-points">22</td>
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                            <td class="total-points">0</td>
                         </tr>
                         
                         <tr>
-                            <td class="rank" data-sort="7">
-                                7
+                            <td class="rank" data-sort="1">
+                                1
                                 
-                            </td>
-                            
-                            <td>Bia e Tonia</td>
-                            
-                            
-                                <td class="points">7</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        --
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">6</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        --
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">7</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        --
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">7</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        --
-                                    
-                                    
-                                </td>
-                            
-                                <td class="points">5</td>
-                                <td class="result">
-                                    
-                                    
-                                    
-                                        --
-                                    
-                                    
-                                </td>
-                            
-                            <td class="total-points">32</td>
-                        </tr>
-                        
-                        <tr>
-                            <td class="rank" data-sort="7">
-                                7
+                                    <span class="medal">🥇</span>
                                 
                             </td>
                             
                             <td>Isa e Lu</td>
                             
                             
-                                <td class="points">7</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -656,7 +438,7 @@
                                     
                                 </td>
                             
-                                <td class="points">6</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -666,7 +448,7 @@
                                     
                                 </td>
                             
-                                <td class="points">7</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -676,7 +458,7 @@
                                     
                                 </td>
                             
-                                <td class="points">7</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -686,7 +468,7 @@
                                     
                                 </td>
                             
-                                <td class="points">5</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -696,19 +478,21 @@
                                     
                                 </td>
                             
-                            <td class="total-points">32</td>
+                            <td class="total-points">0</td>
                         </tr>
                         
                         <tr>
-                            <td class="rank" data-sort="7">
-                                7
+                            <td class="rank" data-sort="1">
+                                1
+                                
+                                    <span class="medal">🥇</span>
                                 
                             </td>
                             
                             <td>Ju Ferraz e Lê</td>
                             
                             
-                                <td class="points">7</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -718,7 +502,7 @@
                                     
                                 </td>
                             
-                                <td class="points">6</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -728,7 +512,7 @@
                                     
                                 </td>
                             
-                                <td class="points">7</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -738,7 +522,7 @@
                                     
                                 </td>
                             
-                                <td class="points">7</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -748,7 +532,7 @@
                                     
                                 </td>
                             
-                                <td class="points">5</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -758,19 +542,21 @@
                                     
                                 </td>
                             
-                            <td class="total-points">32</td>
+                            <td class="total-points">0</td>
                         </tr>
                         
                         <tr>
-                            <td class="rank" data-sort="7">
-                                7
+                            <td class="rank" data-sort="1">
+                                1
+                                
+                                    <span class="medal">🥇</span>
                                 
                             </td>
                             
                             <td>Lana e Lidi</td>
                             
                             
-                                <td class="points">7</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -780,7 +566,7 @@
                                     
                                 </td>
                             
-                                <td class="points">6</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -790,7 +576,7 @@
                                     
                                 </td>
                             
-                                <td class="points">7</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -800,7 +586,7 @@
                                     
                                 </td>
                             
-                                <td class="points">7</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -810,7 +596,7 @@
                                     
                                 </td>
                             
-                                <td class="points">5</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
@@ -820,7 +606,263 @@
                                     
                                 </td>
                             
-                            <td class="total-points">32</td>
+                            <td class="total-points">0</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank" data-sort="1">
+                                1
+                                
+                                    <span class="medal">🥇</span>
+                                
+                            </td>
+                            
+                            <td>Luanda e Ari</td>
+                            
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                            <td class="total-points">0</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank" data-sort="1">
+                                1
+                                
+                                    <span class="medal">🥇</span>
+                                
+                            </td>
+                            
+                            <td>Monique e Livia</td>
+                            
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                            <td class="total-points">0</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank" data-sort="1">
+                                1
+                                
+                                    <span class="medal">🥇</span>
+                                
+                            </td>
+                            
+                            <td>Pati e Dani</td>
+                            
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                            <td class="total-points">0</td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="rank" data-sort="1">
+                                1
+                                
+                                    <span class="medal">🥇</span>
+                                
+                            </td>
+                            
+                            <td>Vivi e Ana</td>
+                            
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                                <td class="points">0</td>
+                                <td class="result">
+                                    
+                                    
+                                    
+                                        --
+                                    
+                                    
+                                </td>
+                            
+                            <td class="total-points">0</td>
                         </tr>
                          
                     </tbody>
@@ -877,188 +919,188 @@
                                 
                             </td>
                             
-                            <td>Ricardo e Cadu</td>
+                            <td>Girão e seu Zé</td>
                             
                             
-                                <td class="points">1</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        03:02
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">2</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        44
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">1</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        202
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">1</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        40.5
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">3</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        04:10
+                                        --
                                     
                                     
                                 </td>
                             
-                            <td class="total-points">8</td>
+                            <td class="total-points">0</td>
                         </tr>
                         
                         <tr>
-                            <td class="rank" data-sort="2">
-                                2
+                            <td class="rank" data-sort="1">
+                                1
                                 
-                                    <span class="medal">🥈</span>
+                                    <span class="medal">🥇</span>
                                 
                             </td>
                             
                             <td>Juninho e Eudes</td>
                             
                             
-                                <td class="points">3</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        15:31
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">1</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        55
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">2</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        200
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">2</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        40.0
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">2</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        03:10
+                                        --
                                     
                                     
                                 </td>
                             
-                            <td class="total-points">10</td>
+                            <td class="total-points">0</td>
                         </tr>
                         
                         <tr>
-                            <td class="rank" data-sort="3">
-                                3
+                            <td class="rank" data-sort="1">
+                                1
                                 
-                                    <span class="medal">🥉</span>
+                                    <span class="medal">🥇</span>
                                 
                             </td>
                             
-                            <td>Girão e seu Zé</td>
+                            <td>Ricardo e Cadu</td>
                             
                             
-                                <td class="points">2</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        12:21
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">3</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        33
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">3</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        150
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">3</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        35.5
+                                        --
                                     
                                     
                                 </td>
                             
-                                <td class="points">1</td>
+                                <td class="points">0</td>
                                 <td class="result">
                                     
                                     
                                     
-                                        02:10
+                                        --
                                     
                                     
                                 </td>
                             
-                            <td class="total-points">12</td>
+                            <td class="total-points">0</td>
                         </tr>
                          
                     </tbody>
@@ -1417,7 +1459,7 @@
                                 
                             </td>
                             
-                            <td>Isa e Carol</td>
+                            <td>Isa e Nati</td>
                             
                             
                                 <td class="points">0</td>
@@ -1481,7 +1523,7 @@
                                 
                             </td>
                             
-                            <td>Isa e Nati</td>
+                            <td>Iza e Carol</td>
                             
                             
                                 <td class="points">0</td>
@@ -1845,7 +1887,7 @@
          
         
         <div class="footer-container">
-            <p class="last-updated">Última atualização: 04/11/2025 09:27:14</p>
+            <p class="last-updated">Última atualização: 04/11/2025 10:21:21</p>
             <p class="signature">By: Lucas Pereira</p>
         </div>
 

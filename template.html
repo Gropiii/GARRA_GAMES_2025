@@ -21,7 +21,7 @@
             max-width: 100%;
             margin: 20px auto;
             padding: 20px;
-            background-color: #001f4a; /* AZUL ESCURO */
+            background-color: #001f4a; /* AZUL ESCURO (do seu código) */
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             overflow-x: auto; 
         }
@@ -48,72 +48,100 @@
             color: #fd25db; /* ROSA */
         }
 
+        /* --- ### INÍCIO DA MUDANÇA (BOTÕES DO MENU) ### --- */
+
         /* Menu de categorias */
-        .menu { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #eee; padding-bottom: 15px; }
-        .menu button { padding: 10px 20px; font-size: 16px; cursor: pointer; background-color: #f0f0f0; border: none; border-bottom: 3px solid transparent; margin: 0 5px; transition: all 0.2s ease-in-out; }
-        .menu button:hover { background-color: #ffffff; }
-        /* Botão ativo do menu em AZUL CLARO */
-        .menu button.active { 
-            color: #992389; /* AZUL CLARO */
-            border-bottom: 3px solid #992389; /* AZUL CLARO */
-            background-color: #fff; 
+        .menu { 
+            text-align: center; 
+            margin-bottom: 25px; 
+            /* MODIFICADO: Borda inferior mais escura para combinar com o tema */
+            border-bottom: 2px solid #444; 
+            padding-bottom: 15px; 
         }
+
+        /* Estilo para cada botão individual do menu (Estilo "Ghost Button") */
+        .menu button { 
+            padding: 10px 20px; 
+            font-size: 16px; 
+            cursor: pointer; 
+            /* MODIFICADO: Fundo transparente */
+            background-color: transparent; 
+            /* MODIFICADO: Contorno (borda) na cor AZUL CLARO */
+            border: 2px solid #00c0ff;
+            /* MODIFICADO: Texto na cor AZUL CLARO */
+            color: #00c0ff;
+            border-radius: 5px; /* Adiciona bordas arredondadas */
+            margin: 0 5px; 
+            transition: all 0.2s ease-in-out; 
+            font-weight: bold; /* Deixa o texto do botão mais forte */
+        }
+
+        /* Estilo do botão quando o mouse passa por cima dele */
+        .menu button:hover { 
+            /* MODIFICADO: Preenche o fundo com AZUL CLARO */
+            background-color: #00c0ff;
+            /* MODIFICADO: Texto fica AZUL ESCURO para contraste */
+            color: #000c2f;
+        }
+        
+        /* Botão ativo do menu em ROSA */
+        .menu button.active { 
+            /* MODIFICADO: Preenche o fundo com ROSA */
+            background-color: #fd25db;
+            /* MODIFICADO: Texto fica AZUL ESCURO para contraste */
+            color: #000c2f;
+            /* MODIFICADO: Borda também fica ROSA */
+            border-color: #fd25db; 
+        }
+
+        /* --- ### FIM DA MUDANÇA (BOTÕES DO MENU) ### --- */
 
         /* --- ESTILOS DA TABELA --- */
 
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        /* Bordas da tabela mais claras para contrastar com o fundo escuro */
         th, td { padding: 10px 12px; border: 1px solid #333; text-align: center; white-space: nowrap; }
         table.dataTable th, table.dataTable td { text-align: center !important; }
         
-        /* Cabeçalho principal da tabela em AZUL CLARO */
+        /* Cabeçalho principal da tabela (usando o rosa/roxo que você tinha) */
         thead th { 
-            background-color: #992389; /* AZUL CLARO */
-            color: #000c2f; /* Texto em AZUL ESCURO para contraste */
+            background-color: #992389;
+            color: #000c2f;
         }
         
-        /* Setas de ordenação da DataTables */
         table.dataTable thead .sorting:after, 
         table.dataTable thead .sorting_asc:after, 
         table.dataTable thead .sorting_desc:after { 
-            color: #000c2f !important; /* Setas em AZUL ESCURO */
+            color: #000c2f !important;
         }
         
         .wod-header { font-size: 1.1em; }
         /* Sub-cabeçalho em ROSA */
         .sub-header { 
             background-color: #fd25db !important; /* ROSA */
-            color: #000c2f !important; /* Texto em AZUL ESCURO */
+            color: #000c2f !important;
             font-size: 0.9em; 
         }
         
-        /* Efeito "zebra" para as linhas (Azul escuro e um tom levemente mais claro) */
+        /* Efeito "zebra" para as linhas */
         table.dataTable tbody tr.odd { 
             background-color: #000c2f !important; /* AZUL ESCURO (Base) */
-            color: #e3f47f !important; /* Texto principal em VERDE LIMÃO */
+            color: #e3f47f !important; /* VERDE LIMÃO */
         }
         table.dataTable tbody tr.even { 
             background-color: #001f4a !important; /* Tom de azul um pouco mais claro */
-            color: #e3f47f !important; /* Texto principal em VERDE LIMÃO */
+            color: #e3f47f !important; /* VERDE LIMÃO */
         }
 
         /* Destaque para Rank, Pontos e Total de Pontos */
         .rank, .total-points, .points { 
             font-weight: bold; 
-            color: #ffffff; /* Texto de destaque em BRANCO */
+            color: #ffffff;
         }
 
-        /* Estilo para as medalhas */
         .medal { margin-left: 8px; font-size: 1.2em; }
-        
-        /* Célula do resultado (WOD) */
         .result { color: #e3f47f; font-size: 1em; } /* VERDE LIMÃO */
-        
-        /* Esconde as tabelas inativas */
         .category-table { display: none; }
-
-        /* Rodapé com data e assinatura */
-        .footer-container { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 10px; border-top: 1px solid #444; font-size: 0.8em; color: #999; } /* Cor cinza neutra */
+        .footer-container { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 10px; border-top: 1px solid #444; font-size: 0.8em; color: #999; }
         .signature { font-style: italic; }
 
         /* --- OTIMIZAÇÃO PARA CELULARES (DESIGN RESPONSIVO) --- */
