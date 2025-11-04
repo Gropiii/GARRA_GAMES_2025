@@ -23,7 +23,7 @@
             padding: 20px;
             background-color: #001f4a; /* AZUL ESCURO */
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            /* MODIFICADO: Rolagem horizontal restaurada para funcionar no celular */
+            /* MODIFICADO: Rolagem horizontal restaurada */
             overflow-x: auto; 
         }
 
@@ -43,7 +43,6 @@
         th, td { padding: 10px 12px; border: 1px solid #333; text-align: center; white-space: nowrap; } 
         table.dataTable th, table.dataTable td { text-align: center !important; }
         
-        /* Cabeçalho principal da tabela */
         thead th { 
             background-color: #992389;
             color: #000c2f;
@@ -62,7 +61,7 @@
             font-size: 0.9em; 
         }
         
-        /* Efeito "zebra" (não precisamos mais das regras extras para colunas congeladas) */
+        /* Efeito "zebra" (as regras extras para colunas congeladas foram removidas) */
         table.dataTable tbody tr.odd { 
             background-color: #000c2f !important; /* AZUL ESCURO (Base) */
             color: #e3f47f !important; /* VERDE LIMÃO */
