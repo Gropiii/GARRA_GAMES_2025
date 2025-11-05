@@ -13,9 +13,48 @@ warnings.filterwarnings(
     message="Downcasting object dtype arrays on .fillna"
 )
 
-# --- ### PONTO DE MODIFICAÇÃO PRINCIPAL ### ---
+# --- Configuração ---
 URL_BASE = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTP2LvRBgCHWvoGeguayoAX5BBYyJVqjrpX9mddDzXJ7_BlhcLlcEJkQGDn4i99K7ZQTcxaR65zoQbu/pub?output=csv'
 URL_SHEETS = f"{URL_BASE}&cache_bust={int(time.time())}"
+
+
+# --- ### INÍCIO DA NOVA FUNÇÃO HELPER ### ---
+def parse_time_score(score_str):
+    """
+    Converte um resultado de WOD de tempo em um número para ordenação.
+    Tempos (ex: "10:30") são convertidos para segundos.
+    CAP+ (ex: "CAP +5") são convertidos para um número alto + reps restantes.
+    Quanto menor o número, melhor o rank.
+    """
+    score_str = str(score_str).strip()
+    
+    # 1. Checa se é um score 'CAP +X'
+    if score_str.upper().startswith('CAP'):
+        try:
+            # Tenta pegar o número de reps restantes (ex: 'CAP +5' -> 5)
+            reps_remaining = int(score_str.split('+')[-1])
+            # O score é um número base alto (pior que qualquer tempo) + reps restantes
+            # Quanto mais reps restantes, pior (maior) o score.
+            return 1000000 + reps_remaining
+        except:
+            # Se for só 'CAP' ou formato inválido, retorna uma penalidade alta
+            return 2000000
+    
+    # 2. Tenta converter para tempo (MM:SS)
+    try:
+        parts = score_str.split(':')
+        if len(parts) == 2:
+            minutes = int(parts[0])
+            seconds = int(parts[1])
+            return (minutes * 60) + seconds
+        # Tenta converter para um número simples (caso de tempo em segundos)
+        else:
+            return float(score_str)
+    except:
+        # 3. Se não for nada disso (ex: '--', 'nan', texto vazio), retorna o pior score
+        return 9999999
+# --- ### FIM DA NOVA FUNÇÃO HELPER ### ---
+
 
 # --- LÓGICA DO CAMPEONATO ---
 try:
@@ -25,7 +64,6 @@ except Exception as e:
     print(f"Erro ao ler dados da planilha: {e}")
     exit()
 
-# Identifica os nomes base dos WODs de forma dinâmica.
 wod_base_names = sorted(list(set([col.replace('_Resultado', '') for col in df_raw.columns if col.endswith('_Resultado')])))
 
 all_categories_data = {}
@@ -33,8 +71,6 @@ all_categories_data = {}
 # 1. Agrupa os dados pela coluna 'Categoria'.
 for category_name, df_category_raw in df_raw.groupby('Categoria'):
     
-    # --- ### MODIFICAÇÃO AQUI ### ---
-    # Agora, o DataFrame principal também pega a coluna 'Integrantes'.
     df_leaderboard = pd.DataFrame({
         'Time': df_category_raw['Time'],
         'Integrantes': df_category_raw['Integrantes'] 
@@ -45,9 +81,7 @@ for category_name, df_category_raw in df_raw.groupby('Categoria'):
         resultado_col = f'{wod_base}_Resultado'
         pontos_col = f'{wod_base}_Pontos'
 
-        # Pega o 'Time' e o resultado do WOD.
         df_wod_full = df_category_raw[['Time', resultado_col]].copy()
-        
         df_wod_participantes = df_wod_full.dropna(subset=[resultado_col]).copy()
 
         if df_wod_participantes.empty:
@@ -62,14 +96,19 @@ for category_name, df_category_raw in df_raw.groupby('Categoria'):
             is_time = (metrica == 'tempo')
 
             if not is_time:
+                # Lógica normal para Reps, Peso, etc.
                 df_wod_participantes['Resultado_Num'] = pd.to_numeric(df_wod_participantes['Resultado'], errors='coerce')
             else:
-                df_wod_participantes['Resultado_Num'] = df_wod_participantes['Resultado']
+                # --- ### MODIFICAÇÃO APLICADA AQUI ### ---
+                # Usa a nova função para criar um score numérico para Tempos e CAP+
+                df_wod_participantes['Resultado_Num'] = df_wod_participantes['Resultado'].apply(parse_time_score)
 
+            # A lógica de ranking continua a mesma, pois 'is_time' é True (ascending=True)
+            # e nossos números (630 vs 1000005) são classificados corretamente.
             df_wod_participantes[pontos_col] = df_wod_participantes['Resultado_Num'].rank(method='min', ascending=is_time)
             df_wod_ranked = df_wod_participantes
 
-        # Junta os dados rankeados. A coluna 'Integrantes' (que já está no df_leaderboard) será mantida.
+        # Junta os dados rankeados de volta na lista COMPLETA de times.
         df_leaderboard = pd.merge(df_leaderboard, df_wod_ranked[['Time', 'Resultado', pontos_col]], on='Time', how='left')
         
         df_leaderboard[pontos_col] = df_leaderboard[pontos_col].fillna(penalty_score).astype(int)
