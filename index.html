@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Leaderboard - GARRA GAMES 2025</title>
-    
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
     <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
@@ -26,117 +25,125 @@
             overflow-x: auto; 
         }
 
-        /* Estilos de Logo e Título */
+        /* Estilos de Logo, Título e Menu */
         .logo-container { display: flex; justify-content: center; align-items: center; margin-bottom: 20px; }
         .logo-item { max-height: 250px; max-width: 90%; width: auto; height: auto; }
         h1 { text-align: center; color: #fd25db; /* ROSA */ }
 
-        /* --- ### INÍCIO DA ALTERAÇÃO (CSS DO MENU) ### --- */
-
-        /* Menu de categorias (agora centraliza o dropdown) */
-        .menu { 
-            text-align: center; 
-            margin-bottom: 25px; 
-            border-bottom: 2px solid #444; 
-            padding-bottom: 15px; 
-        }
-
-        /* NOVO: Rótulo (label) para o dropdown */
-        .menu-label {
-            color: #e3f47f; /* VERDE LIMÃO */
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-right: 10px;
-        }
-
-        /* NOVO: Estilo "Neon" para o dropdown <select> */
+        /* Menu de categorias (Dropdown) */
+        .menu { text-align: center; margin-bottom: 25px; border-bottom: 2px solid #444; padding-bottom: 15px; }
+        .menu-label { color: #e3f47f; font-weight: bold; font-size: 1.1em; margin-right: 10px; }
         #category-select {
-            background-color: #000c2f; /* Fundo AZUL ESCURO */
-            color: #e3f47f; /* Texto VERDE LIMÃO */
-            border: 2px solid #00c0ff; /* Borda AZUL CLARO */
+            background-color: #000c2f;
+            color: #e3f47f;
+            border: 2px solid #00c0ff;
             padding: 10px 15px;
             font-size: 16px;
             font-weight: bold;
             border-radius: 5px;
             cursor: pointer;
-            
-            /* Remove a seta padrão do navegador */
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            
-            /* Adiciona uma seta customizada (SVG embutido) na cor AZUL CLARO */
+            -webkit-appearance: none; -moz-appearance: none; appearance: none;
             background-image: url('data:image/svg+xml;utf8,<svg fill="%2300c0ff" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
             background-repeat: no-repeat;
             background-position: right 10px center;
-            padding-right: 40px; /* Espaço para a seta customizada */
+            padding-right: 40px;
         }
-
-        /* Estilo para as opções (options) dentro do dropdown */
-        #category-select option {
-            background-color: #001f4a;
-            color: #e3f47f;
-            font-weight: bold;
-        }
-
-        /* Removemos os estilos .menu button, .menu button:hover, .menu button.active */
-
-        /* --- ### FIM DA ALTERAÇÃO (CSS DO MENU) ### --- */
+        #category-select option { background-color: #001f4a; color: #e3f47f; font-weight: bold; }
 
         /* --- ESTILOS DA TABELA --- */
+
         table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { padding: 10px 12px; border: 1px solid #333; text-align: center; white-space: nowrap; } 
+        th, td { padding: 10px 12px; border: 1px solid #333; text-align: center; white-space: nowrap; }
         table.dataTable th, table.dataTable td { text-align: center !important; }
-        
-        thead th { 
-            background-color: #992389;
-            color: #000c2f;
-        }
-        
-        table.dataTable thead .sorting:after, 
-        table.dataTable thead .sorting_asc:after, 
-        table.dataTable thead .sorting_desc:after { 
-            color: #000c2f !important;
-        }
-        
+        thead th { background-color: #992389; color: #000c2f; }
+        table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after { color: #000c2f !important; }
         .wod-header { font-size: 1.1em; }
-        .sub-header { 
-            background-color: #fd25db !important; /* ROSA */
-            color: #000c2f !important;
-            font-size: 0.9em; 
-        }
-        
-        table.dataTable tbody tr.odd { 
-            background-color: #000c2f !important; /* AZUL ESCURO (Base) */
-            color: #e3f47f !important; /* VERDE LIMÃO */
-        }
-        table.dataTable tbody tr.even { 
-            background-color: #001f4a !important; /* Tom de azul um pouco mais claro */
-            color: #e3f47f !important; /* VERDE LIMÃO */
-        }
-
-        .rank, .total-points, .points { 
-            font-weight: bold; 
-            color: #ffffff;
-        }
-
+        .sub-header { background-color: #fd25db !important; color: #000c2f !important; font-size: 0.9em; }
+        table.dataTable tbody tr.odd { background-color: #000c2f !important; color: #e3f47f !important; }
+        table.dataTable tbody tr.even { background-color: #001f4a !important; color: #e3f47f !important; }
+        .rank, .total-points, .points { font-weight: bold; color: #ffffff; }
         .medal { margin-left: 8px; font-size: 1.2em; }
-        .result { color: #e3f47f; font-size: 1em; } /* VERDE LIMÃO */
+        .result { color: #e3f47f; font-size: 1em; }
         .category-table { display: none; }
         .footer-container { display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 10px; border-top: 1px solid #444; font-size: 0.8em; color: #999; }
         .signature { font-style: italic; }
 
-        /* Otimização para celulares (mantida) */
+        /* --- ### INÍCIO DAS NOVAS REGRAS (POP-UP) ### --- */
+
+        /* O "fundo" escuro semi-transparente que cobre a tela */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Fundo escuro */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        
+        /* A "janela flutuante" em si */
+        .popup-content {
+            background: #e3f47f; /* Fundo VERDE LIMÃO */
+            color: #000c2f; /* Texto AZUL ESCURO */
+            padding: 25px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        /* Título do pop-up */
+        .popup-content h3 {
+            color: #fd25db; /* ROSA */
+            margin-top: 0;
+            font-size: 1.5em;
+        }
+        
+        /* Parágrafo com os nomes dos integrantes */
+        .popup-content p {
+            white-space: normal; /* Permite que a lista de nomes quebre a linha */
+            font-size: 1.1em;
+            line-height: 1.5;
+        }
+        
+        /* Botão de fechar */
+        .popup-close {
+            background-color: #001f4a; /* AZUL ESCURO */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            font-size: 1em;
+        }
+        
+        /* Estilo para o nome do time na tabela, indicando que é clicável */
+        .team-name-clickable {
+            cursor: pointer;
+            text-decoration: underline;
+            color: #00c0ff; /* AZUL CLARO para destacar */
+        }
+        .team-name-clickable:hover {
+            color: #fd25db; /* ROSA no hover */
+        }
+
+        /* --- ### FIM DAS NOVAS REGRAS (POP-UP) ### --- */
+
+        /* Otimização para celulares */
         @media only screen and (max-width: 768px) {
             body { font-size: 14px; }
             .container { padding: 10px; margin: 10px auto; }
             .logo-container { flex-direction: column; justify-content: center; gap: 15px; }
             .logo-item { max-height: 100px; }
             h1 { font-size: 1.8em; }
-            /* Ajusta o menu no mobile */
             .menu { display: flex; flex-direction: column; align-items: center; gap: 10px; }
             .menu-label { margin-right: 0; }
-            
             th, td { padding: 6px 5px; font-size: 0.85em; }
             .footer-container { flex-direction: column; gap: 5px; }
         }
@@ -154,9 +161,7 @@
         
         <div class="menu">
             <label for="category-select" class="menu-label">Selecione a Categoria:</label>
-            
             <select id="category-select" onchange="showCategory(this.value)">
-                
                 
                     <option value="iniciantefeminino">Iniciante Feminino</option>
                 
@@ -168,9 +173,9 @@
                 
                     <option value="scaledmasculino">Scaled Masculino</option>
                  
-            
             </select>
         </div>
+
         
             <div id="table-container-iniciantefeminino" class="category-table">
                 <h2 style="color: #e3f47f;">Categoria: Iniciante Feminino</h2>
@@ -187,7 +192,7 @@
                             
                                 <th colspan="2" class="wod-header">BELLUM HONORIS</th>
                             
-                                <th colspan="2" class="wod-header">MILIS DE CROTA</th>
+                                <th colspan="2" class="wod-header">MILOS DE CROTA</th>
                             
                                 <th colspan="2" class="wod-header">GLORIA AETERNA</th>
                             
@@ -222,8 +227,11 @@
                                 
                             </td>
                             
-                            <td>Bia e Tonia</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Bia e Tonia
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -286,8 +294,11 @@
                                 
                             </td>
                             
-                            <td>Gabi e Fabrizia</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Gabi e Fabrizia
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -350,8 +361,11 @@
                                 
                             </td>
                             
-                            <td>Haiane e Rafa</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Haiane e Rafa
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -414,8 +428,11 @@
                                 
                             </td>
                             
-                            <td>Isa e Lu</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Isa e Lu
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -478,8 +495,11 @@
                                 
                             </td>
                             
-                            <td>Ju Ferraz e Lê</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Ju Ferraz e Lê
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -542,8 +562,11 @@
                                 
                             </td>
                             
-                            <td>Lana e Lidi</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Lana e Lidi
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -606,8 +629,11 @@
                                 
                             </td>
                             
-                            <td>Luanda e Ari</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Luanda e Ari
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -670,8 +696,11 @@
                                 
                             </td>
                             
-                            <td>Monique e Livia</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Monique e Livia
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -734,8 +763,11 @@
                                 
                             </td>
                             
-                            <td>Pati e Dani</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Teste
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -798,8 +830,11 @@
                                 
                             </td>
                             
-                            <td>Vivi e Ana</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Vivi e Ana
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -873,7 +908,7 @@
                             
                                 <th colspan="2" class="wod-header">BELLUM HONORIS</th>
                             
-                                <th colspan="2" class="wod-header">MILIS DE CROTA</th>
+                                <th colspan="2" class="wod-header">MILOS DE CROTA</th>
                             
                                 <th colspan="2" class="wod-header">GLORIA AETERNA</th>
                             
@@ -908,8 +943,11 @@
                                 
                             </td>
                             
-                            <td>Girão e seu Zé</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Girão e seu Zé
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -972,8 +1010,11 @@
                                 
                             </td>
                             
-                            <td>Juninho e Eudes</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Juninho e Eudes
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1036,8 +1077,11 @@
                                 
                             </td>
                             
-                            <td>Ricardo e Cadu</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Ricardo e Cadu
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1111,7 +1155,7 @@
                             
                                 <th colspan="2" class="wod-header">BELLUM HONORIS</th>
                             
-                                <th colspan="2" class="wod-header">MILIS DE CROTA</th>
+                                <th colspan="2" class="wod-header">MILOS DE CROTA</th>
                             
                                 <th colspan="2" class="wod-header">GLORIA AETERNA</th>
                             
@@ -1146,8 +1190,11 @@
                                 
                             </td>
                             
-                            <td>Fabio/Yara/João G</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Fabio/Yara/João G
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1210,8 +1257,11 @@
                                 
                             </td>
                             
-                            <td>Luccas/Isa/Dani L</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Luccas/Isa/Dani L
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1274,8 +1324,11 @@
                                 
                             </td>
                             
-                            <td>Nat/João M/Valdo</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Nat/João M/Valdo
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1338,8 +1391,11 @@
                                 
                             </td>
                             
-                            <td>Rafa/Dog/Gabriel</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Rafa/Dog/Gabriel
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1413,7 +1469,7 @@
                             
                                 <th colspan="2" class="wod-header">BELLUM HONORIS</th>
                             
-                                <th colspan="2" class="wod-header">MILIS DE CROTA</th>
+                                <th colspan="2" class="wod-header">MILOS DE CROTA</th>
                             
                                 <th colspan="2" class="wod-header">GLORIA AETERNA</th>
                             
@@ -1448,8 +1504,11 @@
                                 
                             </td>
                             
-                            <td>Isa e Nati</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Isa e Nati
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1512,8 +1571,11 @@
                                 
                             </td>
                             
-                            <td>Iza e Carol</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Iza e Carol
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1576,8 +1638,11 @@
                                 
                             </td>
                             
-                            <td>Malou e Fer</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Malou e Fer
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1651,7 +1716,7 @@
                             
                                 <th colspan="2" class="wod-header">BELLUM HONORIS</th>
                             
-                                <th colspan="2" class="wod-header">MILIS DE CROTA</th>
+                                <th colspan="2" class="wod-header">MILOS DE CROTA</th>
                             
                                 <th colspan="2" class="wod-header">GLORIA AETERNA</th>
                             
@@ -1686,8 +1751,11 @@
                                 
                             </td>
                             
-                            <td>Augustão e André</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Augustão e André
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1750,8 +1818,11 @@
                                 
                             </td>
                             
-                            <td>Lucas e Gabriel</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Lucas e Gabriel
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1814,8 +1885,11 @@
                                 
                             </td>
                             
-                            <td>Valdir e Juninho</td>
-                            
+                            <td>
+                                <span class="team-name-clickable" onclick="showIntegrantes(event, 'Pati e Dani')">
+                                    Valdir e Juninho
+                                </span>
+                            </td>
                             
                                 <td class="points">0</td>
                                 <td class="result">
@@ -1876,26 +1950,30 @@
          
         
         <div class="footer-container">
-            <p class="last-updated">Última atualização: 04/11/2025 13:22:43</p>
+            <p class="last-updated">Última atualização: 05/11/2025 19:11:35</p>
             <p class="signature">By: Lucas Pereira</p>
         </div>
 
     </div>
 
+    <div id="integrantes-popup" class="popup-overlay" style="display:none;" onclick="hideIntegrantes()">
+        <div class="popup-content" onclick="event.stopPropagation()">
+            <h3>Integrantes do Time</h3>
+            <p id="popup-names"></p>
+            <button class="popup-close" onclick="hideIntegrantes()">Fechar</button>
+        </div>
+    </div>
     <script>
-        // --- ### INÍCIO DA ALTERAÇÃO (JAVASCRIPT) ### ---
-        
-        // A função 'showCategory' foi simplificada.
-        // Ela não precisa mais se preocupar em adicionar/remover classes 'active' dos botões.
+        // Função para mostrar a categoria selecionada e inicializar a DataTables
         function showCategory(categoryName) {
-            // Esconde todas as divs de tabela
             document.querySelectorAll('.category-table').forEach(tableDiv => { tableDiv.style.display = 'none'; });
             
-            // Mostra a div de tabela correspondente ao 'categoryName'
             const activeTableContainer = document.querySelector('#table-container-' + categoryName);
             activeTableContainer.style.display = 'block';
             
-            // A lógica de inicialização da DataTables permanece a mesma
+            // Seta o dropdown para a categoria correta (útil se a função for chamada de outra forma)
+            document.querySelector('#category-select').value = categoryName;
+
             const tableId = '#leaderboard-' + categoryName;
             
             if (!$.fn.dataTable.isDataTable(tableId)) {
@@ -1910,19 +1988,35 @@
 
         // Roda automaticamente assim que a página termina de carregar
         document.addEventListener('DOMContentLoaded', function() {
-            // Pega o elemento <select>
             const categorySelect = document.querySelector('#category-select');
-            
-            // Verifica se o dropdown existe e tem opções
             if (categorySelect && categorySelect.options.length > 0) {
-                // Pega o valor da *primeira* opção
                 const firstCategoryValue = categorySelect.options[0].value;
-                // Chama a função showCategory com esse valor para exibir a primeira tabela
                 showCategory(firstCategoryValue);
             }
         });
+
+        // --- ### INÍCIO DAS NOVAS FUNÇÕES (POP-UP) ### ---
         
-        // --- ### FIM DA ALTERAÇÃO (JAVASCRIPT) ### ---
+        function showIntegrantes(event, integrantes) {
+            // 1. Impede que o clique no nome acione a ordenação da coluna
+            event.stopPropagation();
+            
+            const popup = document.getElementById('integrantes-popup');
+            const namesElement = document.getElementById('popup-names');
+            
+            // 2. Preenche os nomes, substituindo vírgulas por quebras de linha (HTML <br>)
+            namesElement.innerHTML = integrantes.replace(/,/g, '<br>');
+            
+            // 3. Mostra o pop-up
+            popup.style.display = 'flex';
+        }
+
+        function hideIntegrantes() {
+            // Esconde o pop-up
+            document.getElementById('integrantes-popup').style.display = 'none';
+        }
+        
+        // --- ### FIM DAS NOVAS FUNÇÕES (POP-UP) ### ---
     </script>
 </body>
 </html>
